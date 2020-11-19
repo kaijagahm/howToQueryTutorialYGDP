@@ -6,7 +6,7 @@ Tutorial for YGDP members on how to query the database.
 
 2. Install RStudio. To download RStudio: Go to [this page](https://rstudio.com/products/rstudio/download/) and click the "download" button for the free version of RStudio.
 
-3. Download the contents of this repository using the green "Clone or Download" button.
+3. Download the contents of this repository using the green download button.
 
 4. Navigate to the folder you just downloaded and double-click to open "howToQueryTutorial.Rproj". This will open a new session of RStudio. 
 
