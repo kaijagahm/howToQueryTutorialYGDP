@@ -19,14 +19,25 @@ library(tidyverse) # A suite of packages to make data manipulation easier
 library(here) # For specifying file paths
 
 
-
 # Connect to the database -------------------------------------------------
 con <- dbConnect(RSQLite::SQLite(), here("ygdpDB.db")) # here, we create a connection object `con`, basically like a portal to the database file `ygdpDB.db` from this R script.
 
-
-
 # Practice example queries ------------------------------------------------
 ## Do any practicing here
+
+# 1. Get all data from survey 11
+# a. Load the ratings table
+r <- dbReadTable(con, "ratings")
+# OR
+r <- tbl(con, "ratings") %>% 
+  collect()
+
+# b. Examine the data
+head(r)
+tail(r)
+View(r)
+dim(r)
+
 
 
 
