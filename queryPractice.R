@@ -19,6 +19,7 @@
 library(RSQLite) # R package that interfaces with SQLite 
 library(tidyverse) # A suite of packages to make data manipulation easier
 library(here) # For specifying file paths
+source(here("dbTable.R")) # wrapper function for `dbReadTable()` that correctly parses missing data as NA and parses dates as dates. Use it exactly the same as dbReadTable().
 
 # Note: the lego analogy doesn't carry over to putting the lego set away when you're done with it. So I guess... pretend you're like 3 and don't know how to clean up your toys? Then it makes sense, I think.
 
@@ -26,7 +27,7 @@ library(here) # For specifying file paths
 con <- dbConnect(RSQLite::SQLite(), here("ygdpDB.db")) # here, we create a connection object `con`, basically like a portal to the database file `ygdpDB.db` from this R script.
 
 # Practice example queries ------------------------------------------------
-ratings <- dbReadTable(con, "ratings")
+ratings <- dbTable(con, "ratings")
 
 # Examine the table
 head(ratings, 2) # see the first n rows (6 by default, but we specified 2)
@@ -39,7 +40,7 @@ ncol(ratings) # number of columns
 
 # 1. Get all data from survey 11
 # a. Load the ratings table
-r <- dbReadTable(con, "ratings")
+r <- dbTable(con, "ratings")
 # OR
 r <- tbl(con, "ratings") %>% 
   collect()
@@ -61,7 +62,7 @@ NOTsurvey11 <- ratings %>%
 unique(survey11$surveyID)
 
 # Look at the SENTENCES table
-sentences <- dbReadTable(con, "sentences")
+sentences <- dbTable(con, "sentences")
 head(sentences)
 
 ## which constructions are represented in the database?
@@ -96,7 +97,7 @@ luke <- expandedSurvey11 %>%
   filter(constructionID == "FT")
 dim(luke)
 
-constructions <- dbReadTable(con, "constructions")
+constructions <- dbTable(con, "constructions")
 head(constructions)
 
 # Plot our FT sentences
@@ -148,17 +149,17 @@ dbListTables(con)
 ## List of the column names in one table (SENTENCES)
 dbListFields(con, "sentences")
 ### Note: the above gets the same results as this:
-dbReadTable(con, "sentences") %>%
+dbTable(con, "sentences") %>%
   names()
 ### but with the important difference that if you use dbReadTable, you're reading the entire table into R's memory--it might be huge!--only to then just ask for the names of the columns. dbListFields is MUCH more efficient: it just grabs the column names without first reading in the entire table.
 
 
 # Graph average judgments of 1002 by ANAE dialect region ------------------
 ## pull in the dialect regions table
-dr <- dbReadTable(con, "dialect_regions")
+dr <- dbTable(con, "dialect_regions")
 
 ## pull in the demo_geo table to get demographic information (i.e. raised city)
-demo_geo <- dbReadTable(con, "demo_geo")
+demo_geo <- dbTable(con, "demo_geo")
 
 ## Get ratings just for sentence 1002
 sentence1002 <- ratings %>%
