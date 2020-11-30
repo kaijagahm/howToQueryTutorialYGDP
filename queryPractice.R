@@ -3,7 +3,17 @@
 # You should open this script from *inside* the "howToQueryTutorial.Rproj" R project file--i.e. first click to open the .Rproj file in RStudio, and then open this script from the "Files" pane inside RStudio. 
 # Detailed instructions and explanations for working with the database, as well as links to additional R resources, are available in the 'howToQueryYGDPDatabase.pdf' document in this folder.
 
+
+# Install packages (libraries) --------------------------------------------
+# Note: you only need to install each package once, NOT every time you run the script. 
+# To install the packages below, 'un-comment' each line (remove the # at the beginning). Run the line of code. Then replace the # to 'comment out' the line so it doesn't run every time you run the script.
+# install.packages("RSQLite")
+# install.packages("tidyverse")
+# install.packages("here")
+
+
 # Load packages (libraries) -----------------------------------------------
+# You have to do this every time you run the script. Don't comment out these lines.
 library(RSQLite) # R package that interfaces with SQLite 
 library(tidyverse) # A suite of packages to make data manipulation easier
 library(here) # For specifying file paths
