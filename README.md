@@ -4,6 +4,7 @@ Tutorial and examples for YGDP members on how to query the database.
 Complete and detailed instructions for querying the database are contained in "howToQueryYGDPDatabase.pdf".
 
 ### Files in this repo
+This is a "tree" representation of the files in this folder. The `.` at the top represents the top level directory (folder), called "howToQueryTutorialYGDP". I have added a comment, beginning with `#`, to briefly explain what each file is.
 ```
 .
 ├── README.md
